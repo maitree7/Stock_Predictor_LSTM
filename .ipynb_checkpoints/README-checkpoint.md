@@ -156,16 +156,39 @@ Using deep learning recurrent neural networks, build and evaluate bitcoin closin
 
 <details>
 <summary>Evaluate the performance of each model</summary>
+    
+<br>1. Evaluate the model using the `X_test` and `y_test` data</br>
+
+| **Closing Price**              | **FNG**                        |
+| :--------------------------: | :-------------------------- |
+| Loss = 0.0060              | FNG Loss : 0.07320         |
+
+* Closing Price model has a lower loss
+
+<br>2. Use `X_test` data to make the predictions</br>
+
+<br>3. Recover the original prices instead of the scaled version</br>
+
+    ```python
+        predicted_prices = scaler.inverse_transform(predicted)
+        real_prices = scaler.inverse_transform(y_test.reshape(-1, 1))
+    ```
+<br>4. Create a DataFrame of Real (X) vs. Predicted Values</br>
+
+| **Closing Price**                       | **FNG**                              |
+| ----------------------------------- | ----------------------------------- |
+| <img src="Images/closing_price_results.png" width="400" />  | <img src="Images/fng_results.png" width="400" />  |
+
+* Closing Prices model tracks the actual values better over time.
+
+<br>5. Plot the Real vs. Predicted values on a Line chart
  
+| **Closing Price**                       | **FNG**                              |
+| ----------------------------------- | ----------------------------------- |
+| <img src="Images/closing_price_graph.png" width="500" />  | <img src="Images/fng_plot.png" width="500" />  |
 
 
-Use the above to answer the following:
-
-> Which model has a lower loss?
->
-> Which model tracks the actual values better over time?
->
-> Which window size works best for the model?
+* Window size 7 works best for the model.
 
 </details>
 
